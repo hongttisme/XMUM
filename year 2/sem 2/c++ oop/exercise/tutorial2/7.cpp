@@ -2,14 +2,15 @@
 using namespace std;
 
 int main(){
-    int numOfITem, intTemp;
-    double temp, sum, subTotal, shippingFee,discount;
+    int numOfITem, TempInt;
+    double temp, sum, subTotal, shippingFee,discount, dmgProtectFee;
     string stringTemp;
 
     sum = 0;
     shippingFee = 0;
     discount = 0;
     subTotal = 0;
+    dmgProtectFee = 0;
 
     cout << "total number of item: ";
     cin >> numOfITem;
@@ -20,14 +21,20 @@ int main(){
         subTotal += temp;
     }
 
-    cout << "pick your shipping type (1. Saver, 2. Standard, 3. Courier): ";
-    cin >> intTemp;
+    if(subTotal > 250){
+        cout << "apply damage protection? (1. yes, 2. no) :";
+        cin >> TempInt;
+        if(TempInt == 1)dmgProtectFee = subTotal * 0.01;
+    }
 
-    if(intTemp == 1){
+    cout << "pick your shipping type (1. Saver, 2. Standard, 3. Courier): ";
+    cin >> TempInt;
+
+    if(TempInt == 1){
         shippingFee = 4.9;
-    }else if (intTemp ==2){
+    }else if (TempInt ==2){
         shippingFee = 6.9;
-    }else if(intTemp == 3){
+    }else if(TempInt == 3){
         shippingFee = 10.5;
     }
 
@@ -45,8 +52,9 @@ int main(){
 
     cout << "subtotal: RM" << subTotal << '\n';
 
-    cout << "total: RM" << subTotal + shippingFee - discount<< '\n';
+    cout << "total: RM" << subTotal + shippingFee - discount + dmgProtectFee<< '\n';
 
-    cout << "discount: RM" << discount << ", shipping fee: RM" << shippingFee;
+    cout << "discount: RM" << discount << ", shipping fee: RM" << shippingFee << ", damage protect fee: RM" << dmgProtectFee;
+    
 
 }
